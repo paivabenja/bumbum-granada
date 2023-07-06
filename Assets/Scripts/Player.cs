@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public AudioClip soundClip;
     public float jumpHeight;
     public Vector3 StartPos;
     public Rigidbody2D PlayerRB;
@@ -27,16 +29,10 @@ public class Player : MonoBehaviour
                 if (transform.position.y < GroundLevel)
                 {
                     PlayerRB.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
+                    AudioSource.PlayClipAtPoint(soundClip, transform.position);
                 }
             }
         }
-
-        // if (transform.position.y == GroundLevel)
-        // {
-        //     transform.rotation = new Quaternion(0, 0, 0, 0);
-        // }
-
-        // transform.position = new Vector3(
     }
 
     private void OnCollisionEnter2D()
